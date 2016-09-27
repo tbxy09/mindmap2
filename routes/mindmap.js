@@ -4,5 +4,5 @@
  */
 
 exports.tab = function(req, res){
-  res.send('newtab');
+  res.render('newtab');
 };
