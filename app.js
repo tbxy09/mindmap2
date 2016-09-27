@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , movie = require('./routes/movie')
+  , mindmap = require('./routes/mindmap')
   , http = require('http')
   , path = require('path')
   , ejs = require('ejs')
@@ -63,7 +64,7 @@ app.get('/logout', routes.logout);
 
 app.get('/home', authentication);
 app.get('/home', routes.home);
-
+app.get('/mindmap',mindmap.tab);
 
 //mongo
 app.get('/movie/add',movie.movieAdd);
