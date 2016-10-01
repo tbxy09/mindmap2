@@ -2,7 +2,29 @@
 /*
  * GET users listing.
  */
+var Mind = require('./../models/mongodb.js');
 
 exports.tab = function(req, res){
-  res.render('newtab',{});
+  return res.render('newtab',{});
 };
+
+
+exports.mindsave = function(req,res){
+    console.log('req.body');
+    console.log(req.body);
+     Mind.save(req.body,function(err){
+     res.send('mindsave')
+     })
+}
+exports.mindget = function(req,res){
+     Mind.get(function(obj){
+     res.send(obj)
+    })
+
+}
+exports.mindinsert = function(req,res){
+    Mind.insert(function(){
+           res.send('mindinsert2')
+    })
+
+}

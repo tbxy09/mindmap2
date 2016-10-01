@@ -1,6 +1,4 @@
 var Movie = require('./../models/Movie.js');
-
-
 exports.movieAdd = function(req, res) {
     // if(req.params.name){//update
     //     Movie.findByName(req.params.name,function(err, obj){
@@ -55,7 +53,6 @@ exports.doMovieAdd = function(req, res) {
         }); 
     }
 };
-
 
 exports.movieJSON = function(req, res) {
     Movie.findByName(req.params.name,function(err, obj){

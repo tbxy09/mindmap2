@@ -69,7 +69,10 @@ app.get('/mindmap',mindmap.tab);
 //mongo
 app.get('/movie/add',movie.movieAdd);
 app.post('/movie/add',movie.doMovieAdd);
+app.post('/mindmap/save',mindmap.mindsave);
+app.post('/mindmap/insert',mindmap.mindinsert)
 app.get('/movie/:name',movie.movieAdd);
+app.get('/mindmap/get',mindmap.mindget)
 app.get('/movie/json/:name',movie.movieJSON);
 
 
