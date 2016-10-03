@@ -571,7 +571,7 @@ function _classCallCheck(instance, Constructor) {
 var Newtab = function () {
   function Newtab() {
     _classCallCheck(this, Newtab);
-
+    console.log('NewTab');
     this.mm = new _mindmap2.default("#target");
     this.currentWork = _work2.default.newInstance();
 
@@ -746,7 +746,7 @@ var Newtab = function () {
     key: "loadWorkList",
     value: function loadWorkList() {
       var _this3 = this;
-
+      console.log('loadWorkList');
       _work2.default.getAll(function (works) {
         var history = document.querySelector("#history");
         history.innerHTML = "";
@@ -1115,7 +1115,7 @@ var Work = function () {
             updated: _this.updated
           };
           console.log('save');
-          console.log({contentMap: contentMap})
+          // console.log({contentMap: contentMap})
 /*          chrome.storage.local.set({
             contentMap: contentMap
           }, function () {
@@ -1170,14 +1170,14 @@ var Work = function () {
   }, {
     key: "getAll",
     value: function getAll(callback) {
-      Work._getAll(function (contentMap) {
-        Work.getAllKeys(function (keys) {
+      console.log('getAll');
+        Work.getAllKeys(function (keys,contentMap) {
+          // console.log(keys);
           callback(keys.map(function (key) {
             var data = contentMap[key];
             return new Work(data.created, data.content, data.updated);
           }));
         });
-      });
     }
   }, {
     key: "getLast",
@@ -1202,7 +1202,7 @@ var Work = function () {
         var keys = Object.keys(contentMap);
         callback(keys.sort(function (a, b) {
           return b - a;
-        }));
+        }),contentMap);
       });
     }
   }, {
@@ -1224,9 +1224,7 @@ var Work = function () {
     key: "remove",
     value: function remove(work, callback) {
       Work._getAll(function (contentMap) {
-        console.log(work);
         delete contentMap[work.created];
-        console.log(contentMap);
         // chrome.storage.local.set({
         //   contentMap: contentMap
         // }, function () {

@@ -4,9 +4,6 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , movie = require('./routes/movie')
   , mindmap = require('./routes/mindmap')
   , http = require('http')
   , path = require('path')
@@ -30,9 +27,9 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser()); 
-app.use(express.cookieSession({secret : 'blog.fens.me'}));
+app.use(express.cookieSession({secret:'oneyardline.cc'}));//A session secret in connect is simply used to compute the hash
 app.use(express.session({
-  	secret : 'blog.fens.me',
+  	secret : 'oneyardline.cc',
     store: store,
     cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
 }));
@@ -53,31 +50,12 @@ if ('development' == app.get('env')) {
 }
 
 //basic
-app.get('/', routes.index);
-
-app.all('/login', notAuthentication);
-app.get('/login', routes.login);
-app.post('/login', routes.doLogin);
-
-app.get('/logout', authentication);
-app.get('/logout', routes.logout);
-
-app.get('/home', authentication);
-app.get('/home', routes.home);
 app.get('/mindmap',mindmap.tab);
 
 //mongo
-app.get('/movie/add',movie.movieAdd);
-app.post('/movie/add',movie.doMovieAdd);
 app.post('/mindmap/save',mindmap.mindsave);
 app.post('/mindmap/insert',mindmap.mindinsert)
-app.get('/movie/:name',movie.movieAdd);
 app.get('/mindmap/get',mindmap.mindget)
-app.get('/movie/json/:name',movie.movieJSON);
-
-
-
-app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

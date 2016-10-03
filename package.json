@@ -1,14 +1,16 @@
 {
   "name": "nodejs-demo",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "private": true,
-  "author": "Conan Zhang <bsspirit@gmail.com>",
-  "description": "http://blog.fens.me/nodejs-express3/",
+  "author": "XiaoYan",
+  "description": "this is a node project for mindmap",
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
     "express": "3.2.2",
-    "ejs": "*"
+    "ejs": "*",
+    "mongodb":"*",
+    "session-mongoose":"*"
   }
 }
