@@ -1,0 +1,88 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css" media="screen">
+
+</head>
+<body screen_capture_injected="true">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span8">
+				<form>
+					<fieldset>
+						<legend></legend>
+						<textarea id="c_editor" name="c_editor" class="span12" rows="10" ></textarea>
+						<button id="c_save" type="button" class="btn btn-primary">保存</button>
+						<button id="c_search" type="button" class="btn btn-primary">查找</button>
+						<span id ='c_log'></span>
+					</fieldset>
+				<form>
+			</div>
+		</div>
+	</div>
+	<script src="/javascripts/jquery-1.9.1.min.js"></script>
+	<script src="/javascripts/bootstrap.min.js"></script>
+	<script src="/javascripts/jquery.json-2.4.js"></script>
+	<script>
+	$(function(){
+	            tdata={
+                  "content": [
+                    "tcpdump -i wlan -w outfiles.pcap"
+                  ],
+                  "decription": "capture wlan interface network activity and output to a file can be opened by wireshark",
+                  "kw": [
+                    "tcpdump",
+                    "Linux",
+                    "wireshark"
+                  ]
+                }
+                $('#c_editor').val($.toJSON(tdata))
+                console.log('hi');
+	// 	$('#c_save').on('click',function(event){
+	// 		console.log('click');
+	// 		var data = {};
+	// 		data['content'] = $('#c_editor').val();
+	// 		console.log($('#c_editor').val());
+	// 		// $.ajax({
+	// 		//   type: "POST",
+	// 		//   url: '/dailycommand/insert',
+	// 		//   data: data,
+	// 		//   success: function (data, textStatus){
+	// 		//   	  if(data.success){
+	// 		//   	  	$('#msg').html('成功保存!');
+	// 		//   	  	$('#msg').addClass('alert alert-success');
+	// 		//   	  	// $(location).attr('href','/movie/'+mdata.name);
+	// 		//   	  } else {
+	// 		//   	  	$('#msg').html(data.err);
+	// 		//   	  	$('#msg').addClass('alert alert-error');
+	// 		//   	  }
+	// 		//   }
+	// 		// });
+	// 	});
+	// 	$('#c_search').on('click',function(event){
+	// 		var data = {};
+	// 		data['content'] = mdata;
+
+	// 		$.ajax({
+	// 		  type: "POST",
+	// 		  url: '/dailycommand/search',
+	// 		  data: data,
+	// 		  success: function (data, textStatus){
+	// 		  	  if(data.success){
+	// 		  	  	$('#msg').html('成功保存!');
+	// 		  	  	$('#msg').addClass('alert alert-success');
+	// 		  	  	// $(location).attr('href','/movie/'+mdata.name);
+	// 		  	  } else {
+	// 		  	  	$('#msg').html(data.err);
+	// 		  	  	$('#msg').addClass('alert alert-error');
+	// 		  	  }
+	// 		  }
+	// 		});
+	// 	});
+	})
+
+	</script>
+	<script type="text/javascript" src="/javascripts/dailycommand.js"></script>
+</body >
+</html>

@@ -5,6 +5,7 @@
 
 var express = require('express')
   , mindmap = require('./routes/mindmap')
+  , dailycommand = require('./routes/dailycommand')
   , http = require('http')
   , path = require('path')
   , ejs = require('ejs')
@@ -51,11 +52,16 @@ if ('development' == app.get('env')) {
 
 //basic
 app.get('/mindmap',mindmap.tab);
+app.get('/dailycommand',dailycommand.tab)
+app.get('/debug',dailycommand.debug)
 
 //mongo
 app.post('/mindmap/save',mindmap.mindsave);
 app.post('/mindmap/insert',mindmap.mindinsert)
 app.get('/mindmap/get',mindmap.mindget)
+app.post('/dailycommand/insert',dailycommand.insert)
+app.post('/dailycommand/search',dailycommand.search)
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

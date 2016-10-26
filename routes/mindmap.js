@@ -2,7 +2,7 @@
 /*
  * GET users listing.
  */
-var Mind = require('./../models/mongodb.js');
+var Mind = require('./../models/mongodb.js').MindDAO;
 
 exports.tab = function(req, res){
   return res.render('newtab',{});

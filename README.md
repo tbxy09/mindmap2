@@ -33,3 +33,26 @@ http://blog.fens.me/nodejs-mongoose-json/
 
 程序代码已经上传到github有需要的同学，自行下载。
 https://github.com/bsspirit/nodejs-demo
+
+# Express+Mongodb Js Driver下的开发
+1.框架的认识
+    /public：浏览器会load的,html中要用到的用于交互的js脚本
+    /routes: 浏览器不会load到的，不好调试，后台数据接口
+    /views: routes中渲染用的html
+把所有routes里的实现，搬运到public中？
+/public/javascripts/bundle.js里头，便于调试，不会分散到多个文件中，
+但那是快速开发的是否能保证性能。
+2.开发的模块顺序
+    要用到的数据结构：
+        json,obj,string,array的转换，
+        js data api
+        html data api
+        mongodb data api
+        
+    需要进行的数据操作：
+        查找
+        插入
+        更改
+# bundle.js 是如何生成的
+需要查看，chrome extension里头的mindmap项目
+
