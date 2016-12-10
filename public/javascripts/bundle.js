@@ -641,16 +641,46 @@ var Newtab = function () {
         _this.load(_work2.default.newInstance());
       });
 
+      // var btnTopSites = document.querySelector("#btnTopSites");
+      // btnTopSites.addEventListener("click", function () {
+      //   var text = "Top Sites\n";
+      //   chrome.bookmarks.get(function (sites) {
+      //     sites.forEach(function (site) {
+      //       text = text + "\t[" + site.title + "](" + site.url + ")\n";
+      //     });
+      //     var work = new _work2.default(Date.now(), text, Date.now());
+      //     work.isSave = false;
+      //     _this.load(work);
+      //   });
+      // });
       var btnTopSites = document.querySelector("#btnTopSites");
       btnTopSites.addEventListener("click", function () {
-        var text = "Top Sites\n";
-        chrome.topSites.get(function (sites) {
-          sites.forEach(function (site) {
-            text = text + "\t[" + site.title + "](" + site.url + ")\n";
-          });
-          var work = new _work2.default(Date.now(), text, Date.now());
-          work.isSave = false;
-          _this.load(work);
+        _work2.default._getAll(function (contentMap) {
+          // TODO: Should check exists and updated
+          _this.updated = Date.now();
+          contentMap[_this.created] = {
+            created: _this.created,
+            content: _this.content,
+            updated: _this.updated
+          };
+          console.log('save');
+          // console.log({contentMap: contentMap})
+/*          chrome.storage.local.set({
+            contentMap: contentMap
+          }, function () {
+            if (callback) {
+              callback();
+            }
+          });*/
+           $.ajax({
+              type: "POST",
+              url: '/mindmap/localsave',
+              data: contentMap,
+              success:function(data){
+                console.log(data)
+              }})
+          // MindDAO.save(contentMap)
+
         });
       });
 
@@ -1126,7 +1156,10 @@ var Work = function () {
            $.ajax({
               type: "POST",
               url: '/mindmap/save',
-              data: contentMap})
+              data: contentMap,
+              success:function(data){
+                console.log(data)
+              }})
           // MindDAO.save(contentMap)
 
         });
@@ -1162,8 +1195,12 @@ var Work = function () {
           $.ajax({
        type: "GET",
        url: '/mindmap/get',
-       success: function(json){
-          callback(json)
+       success: function(data){
+          if(typeof data === 'string'){
+              console.log(data)
+              return callback({})
+          }
+          return callback(data)
        }})
       // MindDAO.get(callback)
     }
@@ -1214,10 +1251,10 @@ var Work = function () {
       //   callback();
       // });
       console.log('removeAll');
-           $.ajax({
-              type: "POST",
-              url: '/mindmap/save',
-              data: {}})
+           // $.ajax({
+           //    type: "POST",
+           //    url: '/mindmap/save',
+           //    data: {}})
       // MindDAO.save({})
     }
   }, {
@@ -1234,7 +1271,11 @@ var Work = function () {
            $.ajax({
               type: "POST",
               url: '/mindmap/save',
-              data: contentMap})
+              data: contentMap,
+              success:function(data){
+                console.log(data)
+              }
+              })
         // MindDAO.save(contentMap)
       });
     }

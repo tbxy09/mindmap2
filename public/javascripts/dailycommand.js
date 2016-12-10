@@ -7,17 +7,17 @@ $(function(){
             $.ajax({
               type: "POST",
               url: '/dailycommand/insert',
-              data: data
-              // success: function (data, textStatus){
-              //      if(data.success){
-              //        $('#msg').html('成功保存!');
-              //        $('#msg').addClass('alert alert-success');
-              //        // $(location).attr('href','/movie/'+mdata.name);
-              //      } else {
-              //        $('#msg').html(data.err);
-              //        $('#msg').addClass('alert alert-error');
-              //      }
-              // }
+              data: data,
+              success: function (data, status){
+                   if(status=='success'){
+                     $('#c_log').html('成功保存!');
+                     $('#c_log').addClass('alert alert-success');
+                     // $(location).attr('href','/movie/'+mdata.name);
+                   } else {
+                     $('#c_log').html(data.err);
+                     $('#c_log').addClass('alert alert-error');
+                   }
+              }
             });
         });
         $('#c_search').on('click',function(event){
@@ -28,9 +28,17 @@ $(function(){
               url: '/dailycommand/search',
               data: data,
               success: function (array, status){
-                  if(status='success'){
+                  if(status=='success'){
+                    $('#c_list').html('Results')
                     array.forEach(function(data){
-                        $('#c_log').html($('#c_log').innerHTML+data.content+'\n'+data.description+'\n');
+                          // $("#wordlist").append('<li id="wordlist_' + escape4id(word) + '"><div class="delete" title="Remove from word list"></div>' + word + "</li>");
+                          if(data.ref!=undefined&&data.code!=undefined){
+                           $('#c_list').append('<li><p>' + data.content + '</p><p>' +data.description +'</p><p>' +data.ref +'</p><p>' +data.code +'</p></li>');
+
+                          }
+                          else{
+                           $('#c_list').append('<li><p>' + data.content + '</p><p>' +data.description +'</p></li>');
+                          }
                     })
                     
                     // $('#c_log').addClass('alert alert-success');
