@@ -1145,6 +1145,7 @@ var Work = function () {
             updated: _this.updated
           };
           console.log('save');
+          console.log(contentMap);
           // console.log({contentMap: contentMap})
 /*          chrome.storage.local.set({
             contentMap: contentMap
@@ -1156,7 +1157,8 @@ var Work = function () {
            $.ajax({
               type: "POST",
               url: '/mindmap/save',
-              data: contentMap,
+              data: contentMap[_this.created],
+              // contentMap[_this.created],
               success:function(data){
                 console.log(data)
               }})
@@ -1200,6 +1202,7 @@ var Work = function () {
               console.log(data)
               return callback({})
           }
+          console.log(data);
           return callback(data)
        }})
       // MindDAO.get(callback)
@@ -1261,7 +1264,7 @@ var Work = function () {
     key: "remove",
     value: function remove(work, callback) {
       Work._getAll(function (contentMap) {
-        delete contentMap[work.created];
+        // delete contentMap[work.created];
         // chrome.storage.local.set({
         //   contentMap: contentMap
         // }, function () {
@@ -1270,8 +1273,8 @@ var Work = function () {
         console.log('remove');
            $.ajax({
               type: "POST",
-              url: '/mindmap/save',
-              data: contentMap,
+              url: '/mindmap/remove',
+              data: contentMap[work.created],
               success:function(data){
                 console.log(data)
               }

@@ -10,7 +10,21 @@ exports.tab = function(req, res){
   return res.render('newtab',{});
 };
 
-
+exports.mindremove = function(req,res){
+    Mind.remove(req.body,function(err,log){
+        err = typeof err !=='undefined'?err:null
+        log = typeof log !=='undefined'?log:null
+        if(err!==null){
+            var errstring = JSON.stringify(err)
+            res.send(errstring)
+        }
+        if(log!==null){
+            var logstring = JSON.stringify(log)
+            res.send(logstring)
+        }
+        res.send('mindremove')
+    })
+}
 exports.mindsave = function(req,res){
      Mind.save(req.body,function(err,log){
         err = typeof err !=='undefined'?err:null

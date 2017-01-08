@@ -56,6 +56,7 @@ app.get('/dailycommand',dailycommand.tab)
 app.get('/debug',dailycommand.debug)
 
 //mongo
+app.post('/mindmap/remove',mindmap.mindremove);
 app.post('/mindmap/save',mindmap.mindsave);
 app.post('/mindmap/localsave',mindmap.mindlocalsave);
 app.post('/mindmap/insert',mindmap.mindinsert)
