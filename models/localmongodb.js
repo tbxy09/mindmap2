@@ -4,7 +4,7 @@ var MindDAO = function(){};
 var log = {}
 
 MindDAO.prototype.save = function(obj,callback){
-          MongoClient.connect('mongodb://192.168.2.104:27017/Tb_xy09',function(err,db){
+          MongoClient.connect('mongodb://192.168.1.102:27017/Tb_xy09',function(err,db){
             if(err){
               return callback(err)
             }

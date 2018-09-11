@@ -3,6 +3,7 @@ var MongoClient = require('mongodb').MongoClient
 var MindDAO = function(){};
 var DailyCommand = function(){};
 var log = {}
+var ip='mongodb://192.168.1.102:27017/Tb_xy09'
 
 function json2array(obj){
 return Object.keys(obj).map(function(key){
@@ -12,7 +13,8 @@ return Object.keys(obj).map(function(key){
 }
 
 MindDAO.prototype.insert = function(callback){
-    MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09', function(err, db) {
+    // MongoClient.connect('mongodb://192.168.1.102:27017/Tb_xy09', function(err, db) {
+    MongoClient.connect(ip, function(err, db) {
         // Get the collection
         console.log('MindDAO.insert');
         var colArray = db.collection('contentMapArray');
@@ -47,7 +49,8 @@ MindDAO.prototype.insert = function(callback){
 };
 
 MindDAO.prototype.save = function(obj,callback){
-          MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          // MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          MongoClient.connect(ip, function(err, db) {
             if(err){
               return callback(err)
             }
@@ -100,7 +103,8 @@ MindDAO.prototype.save = function(obj,callback){
 }
 
 MindDAO.prototype.saveUnit = function(obj,callback){
-          MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          // MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          MongoClient.connect(ip, function(err, db) {
             if(err){
               return callback(err)
             }
@@ -120,7 +124,8 @@ MindDAO.prototype.saveUnit = function(obj,callback){
           })
 }
 MindDAO.prototype.remove = function(obj,callback){
-          MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          // MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          MongoClient.connect(ip, function(err, db) {
             if(err){
               return callback(err)
             }
@@ -142,7 +147,8 @@ MindDAO.prototype.remove = function(obj,callback){
 
 
 MindDAO.prototype.get = function(callback){
-      MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+      // MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+      MongoClient.connect(ip, function(err, db) {
         if(err){
           return callback(err)
         }
@@ -169,7 +175,8 @@ MindDAO.prototype.get = function(callback){
       })
 }
 DailyCommand.prototype.insert = function(obj,callback){
-          MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          // MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+          MongoClient.connect(ip, function(err, db) {
             var col = db.collection('dailycommand');
             console.log('DailyCommand.insert');
             // var json = JSON.stringify(obj.content)
@@ -185,7 +192,8 @@ DailyCommand.prototype.insert = function(obj,callback){
           })
 }
 DailyCommand.prototype.search = function(kw,callback){
-      MongoClient.connect('mongodb://192.168.2.101:27017/Tb_xy09',function(err,db){
+      // MongoClient.connect('mongodb://192.168.1.102:27017/Tb_xy09',function(err,db){
+      MongoClient.connect(ip, function(err, db) {
         var col = db.collection('dailycommand');
         console.log('DailyCommand.search');
         if(kw.content=="")
