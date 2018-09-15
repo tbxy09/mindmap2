@@ -1,2 +1,2 @@
 # mindmap2
-[](oneyarline.net/img/mindmap2)
+[](https://oneyardline.cn/img/mindmap2.png)
